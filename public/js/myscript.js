@@ -1,10 +1,10 @@
 var clickedBtnID;
 $(document).ready(function() {
-
+    $("#myselect").select2({
+        tags: true
+    });
     $(document).on("click", ".targe", function() {
         var clickedBtnID = $(this).attr('id');
-        console.log(clickedBtnID)
-
         var jqxhr = $.getJSON("http://delivred.test/api/order/" + clickedBtnID, function() {
             $('#Ecity').val(jqxhr.responseJSON.city)
             $('#Ecountry').val(jqxhr.responseJSON.country)

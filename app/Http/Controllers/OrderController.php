@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\order;
 use DataTables;
 use Yajra\DataTables\Html\Builder;
+use App\Products;
+use App\OrderDetails;
 
 class OrderController extends Controller
 {
-    public function home(Request $request,Builder $builder)
+    public function home(Request $request, Builder $builder)
     {
         $order= new order();
         $order=$order::all();
@@ -35,14 +37,36 @@ class OrderController extends Controller
                 ->removeColumn('id')
                 ->make(true);
         }
-
-        return view('orders.index');
-
+        $product=new Products();
+        $product=$product->list();
+        return view('orders.index', ['product'=>$product]);
     }
     public function insert(Request $request)
     {
         $order= new order();
-        $order::create($request->except('_token'));
+
+        $data=$order::create(array(
+            'full_name'=>$request->input('full_name'),
+            'phone'=>$request->input('phone'),
+            'adress'=>$request->input('adress'),
+            'city'=>$request->input('city'),
+            'country'=>$request->input('country')
+        ));
+
+        
+        $ord=new OrderDetails();
+        $product=new Products();
+        // get selectd products
+        $productslist=$request->input('products');
+        //check if qte exists
+        if($request->input('qte')){
+            foreach($productslist as $req){
+                // get product infos
+            $product=$product::find($req);
+
+             $ord->insert($req, $request->input('qte'), $product->price, $data->id);
+            }
+    }
         return redirect('/');
     }
 

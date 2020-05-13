@@ -12,6 +12,7 @@
           type='text/css'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet'
           type='text/css'>
+          <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
 
 </head>
@@ -61,7 +62,7 @@
 <script src="{{ asset('js/datatables.bootstrap.js') }}"></script>
 <script src="{{ asset('js/handlebars.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.0.0/jquery.mark.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script src="{{ asset('js/myscript.js') }}"></script>
 <script>
     $(document).ready(function(){
