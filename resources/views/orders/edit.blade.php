@@ -48,6 +48,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label for="product">product</label>
+
+                            <select class="form-control" multiple="multiple" id="myselect" name="products[]">
+                                <option value=""></option>
+                                @foreach ($product as $item)
+                                <option value="{{ $item->id }}">{{ $item->brand.' '.$item->name.' '.$item->price.' $' }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="qte">Qte</label>
+
+                                <input type="number" class="form-control" name="qte" id="">
+                        </div>
+                    </div>
+                </div>                
             </fieldset>
         </div>
         <div class="modal-footer">

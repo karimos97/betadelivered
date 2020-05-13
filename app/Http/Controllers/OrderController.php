@@ -21,13 +21,13 @@ class OrderController extends Controller
             return Datatables::of($order)
                 ->addColumn('action', function ($order) {
                     return '<div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                     <button id='.$order->id.'" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                   <button id='.$order->id.'" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-dark targe"><i class="glyphicon glyphicon-search"></i> Details</button>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                   <button id='.$order->id.'" data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                   </div>
 
@@ -73,9 +73,29 @@ class OrderController extends Controller
     public function edit($id, Request $request)
     {
         $order= new order();
-        $order::where('id', $id)->update($request->except('_token', '_method'));
+        $data=$order::where('id', $id)->update(array(
+            'full_name'=>$request->input('full_name'),
+            'phone'=>$request->input('phone'),
+            'adress'=>$request->input('adress'),
+            'city'=>$request->input('city'),
+            'country'=>$request->input('country')
+        ));
+        
+        $ord=new OrderDetails();
+        $product=new Products();
+        // get selected products
+        $productslist=$request->input('products');
+        //check if qte exists
+        if($request->input('qte')){
+            foreach($productslist as $req){
+                // get product infos
+            $product=$product::find($req);
+                //dd($data);
+             $ord->updates($id,$req, $request->input('qte'), $product->price);
+            }
         return redirect('/');
     }
+}
 
     public function remove($id)
     {

@@ -20,14 +20,17 @@ class OrderDetails extends Model
         $ord->order_id=$order_id;
         $ord->save();
     }
-    /*public function update($id, $product_id, $product_qte, $product_price, $order_id)
+    public function updates($id, $product_id, $product_qte, $product_price)
     {
         $ord=new OrderDetails();
-        $ord=$ord::find($id);
+        $ord=$ord::where('order_id',$id)->first();
+       // dd($ord);
+        $dt_id=$ord->id;
+        $ord=new OrderDetails();
+        $ord=$ord::find($dt_id);
         $ord->product_id=$product_id;
         $ord->product_qte=$product_qte;
         $ord->product_price=$product_price*$product_qte;
-        $ord->order_id=$order_id;
         $ord->save();
-    }*/
+    }
 }
