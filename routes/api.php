@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/order/{id}', 'OrderController@get');
+Route::get('/order/details/{id}', 'OrderController@details');

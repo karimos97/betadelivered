@@ -32,5 +32,8 @@ class OrderDetails extends Model
         $ord->product_qte=$product_qte;
         $ord->product_price=$product_price*$product_qte;
         $ord->save();
+        
     }
+
+    
 }

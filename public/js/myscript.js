@@ -12,6 +12,15 @@ $(document).ready(function() {
             $('#Ephone').val(jqxhr.responseJSON.phone)
             $('#Eadress').val(jqxhr.responseJSON.adress)
         })
+         var respo = $.getJSON("http://delivred.test/api/order/details/" + clickedBtnID, function() {
+           $("li").remove();
+           dat=respo.responseJSON;
+            for(i=0;i<dat.length;i++){
+                
+                    $("#details").append("<li class='list-group-item'>"+dat[i].brand+' '+dat[i].name+' '+dat[i].price+" $ </li>"); 
+
+            }
+        })
 
         $("form").attr("action", "/order/" + clickedBtnID);
 

@@ -8,6 +8,7 @@ use DataTables;
 use Yajra\DataTables\Html\Builder;
 use App\Products;
 use App\OrderDetails;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -109,5 +110,14 @@ class OrderController extends Controller
         $order= new order();
         $order=$order::find($id);
         return response()->json($order);
+    }
+
+    public function details($id){
+        $data =DB::table('orders')
+        ->join('order_details', 'order_details.order_id', '=','orders.id')
+        ->join('products','products.id','order_details.product_id')
+        ->select('products.*', 'order_details.product_qte', 'order_details.product_price')->where('orders.id',$id)
+        ->get();
+        return response()->json($data);
     }
 }
