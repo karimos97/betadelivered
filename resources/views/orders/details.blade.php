@@ -11,8 +11,8 @@
         
             <fieldset>
         <ul class="list-group list-group-flush" id='details'>
-            <li class="list-group-item">Cras justo odio</li>
             
+
         </ul>
             </fieldset>
         </div>

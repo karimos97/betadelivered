@@ -40,6 +40,7 @@ class OrderController extends Controller
         }
         $product=new Products();
         $product=$product->list();
+
         return view('orders.index', ['product'=>$product]);
     }
     public function insert(Request $request)
@@ -54,20 +55,20 @@ class OrderController extends Controller
             'country'=>$request->input('country')
         ));
 
-        
+
         $ord=new OrderDetails();
         $product=new Products();
         // get selectd products
         $productslist=$request->input('products');
         //check if qte exists
-        if($request->input('qte')){
-            foreach($productslist as $req){
+        if ($request->input('qte')) {
+            foreach ($productslist as $req) {
                 // get product infos
-            $product=$product::find($req);
+                $product=$product::find($req);
 
-             $ord->insert($req, $request->input('qte'), $product->price, $data->id);
+                $ord->insert($req, $request->input('qte'), $product->price, $data->id);
             }
-    }
+        }
         return redirect('/');
     }
 
@@ -81,22 +82,22 @@ class OrderController extends Controller
             'city'=>$request->input('city'),
             'country'=>$request->input('country')
         ));
-        
+
         $ord=new OrderDetails();
         $product=new Products();
         // get selected products
         $productslist=$request->input('products');
         //check if qte exists
-        if($request->input('qte')){
-            foreach($productslist as $req){
+        if ($request->input('qte')) {
+            foreach ($productslist as $req) {
                 // get product infos
-            $product=$product::find($req);
+                $product=$product::find($req);
                 //dd($data);
-             $ord->updates($id,$req, $request->input('qte'), $product->price);
+                $ord->updates($id, $req, $request->input('qte'), $product->price);
             }
-        return redirect('/');
+            return redirect('/');
+        }
     }
-}
 
     public function remove($id)
     {
@@ -112,12 +113,15 @@ class OrderController extends Controller
         return response()->json($order);
     }
 
-    public function details($id){
+    public function details($id)
+    {
         $data =DB::table('orders')
-        ->join('order_details', 'order_details.order_id', '=','orders.id')
-        ->join('products','products.id','order_details.product_id')
-        ->select('products.*', 'order_details.product_qte', 'order_details.product_price')->where('orders.id',$id)
+        ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+        ->join('products', 'products.id', 'order_details.product_id')
+        ->select('products.*', 'order_details.product_qte', 'order_details.product_price')->where('orders.id', $id)
         ->get();
+
+
         return response()->json($data);
     }
 }
