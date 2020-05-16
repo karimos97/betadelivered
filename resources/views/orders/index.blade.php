@@ -83,4 +83,10 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $(".myselect").select2({
+            tags: true
+        });})
+</script>
 </html>

@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="product">product</label>
 
-                            <select class="form-control" multiple="multiple" id="myselect" name="products[]">
+                            <select class="form-control myselect" multiple="multiple"  name="products[]">
                                 <option value=""></option>
                                 @foreach ($product as $item)
                                 <option value="{{ $item->id }}">{{ $item->brand.' '.$item->name.' '.$item->price.' $' }}</option>

@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label for="product">product</label>
 
-                            <select class="form-control" multiple="multiple" id="myselect" name="products[]">
+                            <select class="form-control myselect" multiple="multiple" id="myselect" name="products[]">
                                 <option value=""></option>
                                 @foreach ($product as $item)
                                 <option value="{{ $item->id }}">{{ $item->brand.' '.$item->name.' '.$item->price.' $' }}</option>
@@ -69,7 +69,7 @@
                                 <input type="number" class="form-control" name="qte" id="">
                         </div>
                     </div>
-                </div>                
+                </div>
             </fieldset>
         </div>
         <div class="modal-footer">
