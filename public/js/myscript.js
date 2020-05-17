@@ -11,7 +11,8 @@ $(document).ready(function() {
             $('#Efull_name').val(jqxhr.responseJSON.full_name)
             $('#Ephone').val(jqxhr.responseJSON.phone)
             $('#Eadress').val(jqxhr.responseJSON.adress)
-        }) var respo = $.getJSON("/api/order/details/" + clickedBtnID.trim(), function() {
+        });
+        var respo = $.getJSON("/api/order/details/" + clickedBtnID.trim(), function() {
             $("li").remove();
             dat = respo.responseJSON;
             for (i = 0; i < dat.length; i++) {
