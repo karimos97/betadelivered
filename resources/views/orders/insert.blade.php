@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label for="qte">Qte</label>
 
-                                <input type="number" class="form-control" name="qte" id="">
+                                <input type="number" class="form-control" name="qte" id="" min="0">
                         </div>
                     </div>
                 </div>
