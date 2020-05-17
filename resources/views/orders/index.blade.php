@@ -53,10 +53,7 @@
 </body>
 
 
-@include('orders.insert')
-@include('orders.edit')
-@include('orders.delete')
-@include('orders.details')
+
 
 <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
 <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
@@ -66,6 +63,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.0.0/jquery.mark.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script src="{{ secure_asset('js/myscript.js') }}"></script>
+@include('orders.insert')
+@include('orders.edit')
+@include('orders.delete')
+@include('orders.details')
 <script>
     $(document).ready(function(){
         $(".myselect").select2({
