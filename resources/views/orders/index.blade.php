@@ -71,7 +71,7 @@
         $('#dataTableBuilder').DataTable({
             processing: true,
             serverSide: true,
-            ajax: 'https://delivred.test/',
+            ajax: '/',
             columns: [
                 {data: 'full_name',name:'full_name'},
                 {data: 'phone',name:'phone'},
