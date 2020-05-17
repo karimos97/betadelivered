@@ -1,8 +1,6 @@
 var clickedBtnID;
 $(document).ready(function() {
-    $(".myselect").select2({
-        tags: true
-    });
+
     $(document).on("click", ".targe", function() {
         var clickedBtnID = $(this).attr('id');
 
