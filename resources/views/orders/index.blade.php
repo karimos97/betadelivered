@@ -68,6 +68,9 @@
 <script src="{{ secure_asset('js/myscript.js') }}"></script>
 <script>
     $(document).ready(function(){
+        $(".myselect").select2({
+            tags: true
+        });
         $('#dataTableBuilder').DataTable({
             processing: true,
             serverSide: true,
@@ -83,10 +86,5 @@
         });
     });
 </script>
-<script>
-    $(document).ready(function() {
-        $(".myselect").select2({
-            tags: true
-        });})
-</script>
+
 </html>
