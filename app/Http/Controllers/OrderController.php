@@ -23,13 +23,13 @@ class OrderController extends Controller
                 ->addColumn('action', function ($order) {
                     return '<div class="row">
                     <div class="col-sm-2">
-                    <button id='.$order->id.'" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                    <button id='.$order->id.' data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                   </div>
                   <div class="col-sm-2">
-                  <button id='.$order->id.'" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-dark targe"><i class="glyphicon glyphicon-search"></i> Details</button>
+                  <button id='.$order->id.' data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-dark targe"><i class="glyphicon glyphicon-search"></i> Details</button>
                   </div>
                   <div class="col-sm-2">
-                  <button id='.$order->id.'" data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                  <button id='.$order->id.' data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                   </div>
 
                     </div>';

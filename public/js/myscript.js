@@ -5,7 +5,7 @@ $(document).ready(function() {
     });
     $(document).on("click", ".targe", function() {
         var clickedBtnID = $(this).attr('id');
-        console.log(clickedBtnID)
+
         var jqxhr = $.getJSON("/api/order/" + clickedBtnID.trim(), function() {
             $('#Ecity').val(jqxhr.responseJSON.city)
             $('#Ecountry').val(jqxhr.responseJSON.country)
