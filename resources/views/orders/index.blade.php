@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Orders</title>
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/demo.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/datatables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/demo.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/datatables.bootstrap.css') }}" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,800' rel='stylesheet'
           type='text/css'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet'
@@ -58,20 +58,20 @@
 @include('orders.delete')
 @include('orders.details')
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/datatables.bootstrap.js') }}"></script>
-<script src="{{ asset('js/handlebars.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ secure_asset('js/datatables.bootstrap.js') }}"></script>
+<script src="{{ secure_asset('js/handlebars.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.0.0/jquery.mark.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-<script src="{{ asset('js/myscript.js') }}"></script>
+<script src="{{ secure_asset('js/myscript.js') }}"></script>
 <script>
     $(document).ready(function(){
         $('#dataTableBuilder').DataTable({
             processing: true,
             serverSide: true,
-            ajax: 'http://delivred.test/',
+            ajax: 'https://delivred.test/',
             columns: [
                 {data: 'full_name',name:'full_name'},
                 {data: 'phone',name:'phone'},
