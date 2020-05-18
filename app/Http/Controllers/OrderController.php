@@ -18,22 +18,10 @@ class OrderController extends Controller
         $order=$order::all();
 
         if ($request->ajax()) {
-            $order = order::select(['id', 'full_name', 'phone', 'adress', 'city', 'country']);
-            return Datatables::of($order)
-                ->addColumn('action', function ($order) {
-                    return '<div class="row">
-                    <div class="col-sm-3">
-                    <button id='.$order->id.' data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe"><i class="glyphicon glyphicon-edit"></i> Edit</button>
-                  </div>
-                  <div class="col-sm-3">
-                  <button id='.$order->id.' data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-dark targe"><i class="glyphicon glyphicon-search"></i> Details</button>
-                  </div>
-                  <div class="col-sm-3">
-                  <button id='.$order->id.' data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-                  </div>
+            $order = order::select(['id', 'full_name', 'phone', 'adress', 'city', 'country', 'id as order_id']);
 
-                    </div>';
-                })
+            //dd($order->get());
+            return Datatables::of($order)
                 ->editColumn('id', 'ID: {{$id}}')
                 ->removeColumn('id')
                 ->make(true);
@@ -99,11 +87,11 @@ class OrderController extends Controller
         }
     }
 
-    public function remove($id)
+    public function remove(Request $request)
     {
         $order= new order();
-        $order::where('id', $id)->delete();
-        return redirect('/');
+        $result = $order::where('id', $request->id)->delete();
+        return response()->json(['result'=>$result]);
     }
 
     public function get($id)

@@ -1,4 +1,4 @@
-var clickedBtnID;
+/* var clickedBtnID;
 $(document).ready(function() {
 
     $(document).on("click", ".targe", function() {
@@ -28,4 +28,4 @@ $(document).ready(function() {
     });
 
 
-})
+}) */

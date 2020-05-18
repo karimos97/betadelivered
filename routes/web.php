@@ -25,5 +25,5 @@ Auth::routes();
 
 Route::get('/', 'OrderController@home')->name('datatables.data')->middleware('auth');;
 Route::post('/order', 'OrderController@insert')->middleware('auth');;
-Route::delete('/order/{id}', 'OrderController@remove')->name('delete');;
+Route::delete('/order', 'OrderController@remove')->name('delete');;
 Route::put('/order/{id}', 'OrderController@edit');
