@@ -57,13 +57,14 @@ class OrderController extends Controller
                 $ord->insert($req, $request->input('qte'), $product->price, $data->id);
             }
         }
-        return redirect('/');
+        //return redirect('/');
     }
 
-    public function edit($id, Request $request)
+    public function edit(Request $request)
     {
         $order= new order();
-        $data=$order::where('id', $id)->update(array(
+
+        $data=$order::where('id', $request->id)->update(array(
             'full_name'=>$request->input('full_name'),
             'phone'=>$request->input('phone'),
             'adress'=>$request->input('adress'),
@@ -81,9 +82,8 @@ class OrderController extends Controller
                 // get product infos
                 $product=$product::find($req);
                 //dd($data);
-                $ord->updates($id, $req, $request->input('qte'), $product->price);
+                $ord->updates($request->id, $req, $request->input('qte'), $product->price);
             }
-            return redirect('/');
         }
     }
 

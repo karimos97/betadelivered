@@ -1,4 +1,4 @@
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,9 +8,9 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ url('/order/1') }}">
+            <form method="POST" action="`" id="form-edit">
                 <input type="hidden" name="_method" value="PUT">
-                @csrf
+                <input type="hidden" name="order_id" id="edited">
             <fieldset>
                 <div class='row'>
                     <div class='col-sm-6'>
@@ -74,7 +74,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">save order</button>
+          <button type="button" class="btn btn-primary btn-confirm-edit">save order</button>
         </div>
     </form>
       </div>

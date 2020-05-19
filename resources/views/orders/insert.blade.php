@@ -8,8 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ url('/order') }}">
-                @csrf
+            <form method="POST" action="`" id="form-insert">
             <fieldset>
                 <div class='row'>
                     <div class='col-sm-6'>
@@ -73,7 +72,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">make order</button>
+          <button type="button" class="btn btn-primary btn-confirm-insert">make order</button>
         </div>
     </form>
       </div>
