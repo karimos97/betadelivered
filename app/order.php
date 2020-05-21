@@ -9,6 +9,6 @@ use App\Traits\MultiTenintable;
 
 class order extends Model
 {
-    use SoftDeletes,MultiTenintable;
+    use SoftDeletes,MultiTenintable; 
     protected $fillable =['id','full_name','phone','adress','city','country','created_by'];
 }

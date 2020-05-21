@@ -7,26 +7,23 @@
         <button type="button" class="btn btn-info btn-refresh"><i class="fa fa-plus"></i> Refresh</button>
     </div>
 </div>
-            <table class="table" id="dataTableBuilder">
+            <table class="table" id="products_list">
                 <thead>
                     <tr>
-                        <th title="Full Name">Full Name</th>
-                        <th title="Phone">Phone</th>
-                        <th title="Adress">Adress</th>
-                        <th title="City">City</th>
-                        <th title="Country">Country</th>
+                        <th title="Name">Name</th>
+                        <th title="Price">Price</th>
+                        <th title="Brand">Brand</th>
+                        <th title="Qte">Qte</th>
                         <th title="Actions">Actions</th>
                      </tr>
                  </thead>
                 </table>
-                @include('orders.insert')
-                @include('orders.edit')
-                @include('orders.delete')
-                @include('orders.details')
+                @include('products.insert')
+                @include('products.edit')
+                @include('products.delete')
+                @include('products.details')
 
 @endsection
-
 @section('script')
-<script src="{{ secure_asset('js/myscript.js') }}"></script>
-
+<script src="{{ secure_asset('js/productScripts.js') }}"></script>
 @endsection

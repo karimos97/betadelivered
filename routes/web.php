@@ -20,10 +20,29 @@ Route::get('/home', function () {
 Auth::routes();
 
 
+    Route::group(['prefix' => '/order','middleware' => 'auth'], function () {
+        
+    
+    Route::get('/', 'OrderController@home')->name('datatables.data');
+    ;
+    Route::post('/insert', 'OrderController@insert')
+    ;
+    Route::delete('/delete', 'OrderController@remove');
+    ;
+    Route::put('/edit', 'OrderController@edit');
+
+});
+
+Route::group(['prefix' => '/product','middleware' => 'auth'], function () {
+    
 
 
+    Route::get('/', 'ProductsController@home')->name('productstable.data');
+    ;
+    Route::post('/insert', 'ProductsController@insert')->middleware('auth')
+    ;
+    Route::delete('/delete', 'ProductsController@remove')->name('delete');
+    ;
+    Route::put('/edit', 'ProductsController@edit');
 
-Route::get('/', 'OrderController@home')->name('datatables.data')->middleware('auth');;
-Route::post('/order', 'OrderController@insert')->middleware('auth');;
-Route::delete('/order', 'OrderController@remove')->name('delete');;
-Route::put('/order', 'OrderController@edit');
+});

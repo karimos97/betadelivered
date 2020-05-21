@@ -1,14 +1,13 @@
 $(document).ready(function() {
-    var t = $('#dataTableBuilder').DataTable({
+    var t = $('#products_list').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '/order/',
+        ajax: '/product/',
         columns: [
-            { data: 'full_name', name: 'full_name' },
-            { data: 'phone', name: 'phone' },
-            { data: 'adress', name: 'adress' },
-            { data: 'city', name: 'city' },
-            { data: 'country', name: 'country' },
+            { data: 'name', name: 'name' },
+            { data: 'price', name: 'price' },
+            { data: 'brand', name: 'brand' },
+            { data: 'Qte', name: 'Qte' },
             {
                 data: 'action',
                 name: 'actions',
@@ -17,28 +16,27 @@ $(document).ready(function() {
                 width: 200,
                 class: "text-center",
                 render: function(a, b, c, d) {
-                    //console.log(c.order_id);
-                    return '<button data=' + c.order_id + ' data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe btn-edit"><i class="glyphicon glyphicon-edit"></i> Edit</button>\
-              <button data=' + c.order_id + '  type="button"  class="btn btn-xs btn-dark targe btn-detail"><i class="glyphicon glyphicon-search"></i> Details</button>\
-              <button data=' + c.order_id + ' data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe btn-delete"><i class="glyphicon glyphicon-trash"></i> Delete</button>\
+                    return '<button data=' + c.id + ' data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning targe btn-edit"><i class="glyphicon glyphicon-edit"></i> Edit</button>\
+              <button data=' + c.id + '  type="button"  class="btn btn-xs btn-dark targe btn-detail"><i class="glyphicon glyphicon-search"></i> Details</button>\
+              <button data=' + c.id + ' data-toggle="modal" data-target="#deleteModal" class="btn btn-xs btn-danger targe btn-delete"><i class="glyphicon glyphicon-trash"></i> Delete</button>\
               '
                 }
 
             }
         ]
     });
-    $("#dataTableBuilder").on('click', '.btn-delete, .btn-edit', function() {
+    $("#products_list").on('click', '.btn-delete, .btn-edit', function() {
         //alert("Refresh");
 
-        $("[name=order_id]").val($(this).attr('data'));
+        $("[name=product_id]").val($(this).attr('data'));
+        $('#product_id').val($(this).attr('data'));
         //$('#deleteModal').modal('show');
-        //t.draw();
-        var jqxhr = $.getJSON("/api/order/" + $(this).attr('data'), function() {
-            $('#Ecity').val(jqxhr.responseJSON.city)
-            $('#Ecountry').val(jqxhr.responseJSON.country)
-            $('#Efull_name').val(jqxhr.responseJSON.full_name)
-            $('#Ephone').val(jqxhr.responseJSON.phone)
-            $('#Eadress').val(jqxhr.responseJSON.adress)
+        var jqxhr = $.getJSON("/api/product/" + $(this).attr('data'), function() {
+            $('#EName').val(jqxhr.responseJSON.name)
+            $('#EPrice').val(jqxhr.responseJSON.price)
+            $('#EBrand').val(jqxhr.responseJSON.brand)
+            $('#EQte').val(jqxhr.responseJSON.Qte)
+            $('#Edescription').val(jqxhr.responseJSON.description)
         });
     });
 
@@ -51,9 +49,9 @@ $(document).ready(function() {
 
     $('.btn-confirm-delete').click(function() {
         $.ajax({
-            url: "/order/delete",
+            url: "/product/delete",
             type: 'DELETE',
-            data: { id: $('[name=order_id]').val() },
+            data: { id: $('[name=product_id]').val() },
             beforeSend: function() {
 
             },
@@ -74,7 +72,7 @@ $(document).ready(function() {
         //formData.append('id',$( "#order_details .edit-order").attr("data"));
         //url = $(this).attr("action");
         $.ajax({
-            url: '/order/insert',
+            url: '/product/insert',
             data: formData,
             type: 'POST',
             cache: false,
@@ -87,7 +85,7 @@ $(document).ready(function() {
                 //$("#loading-save").hide();
             },
             success: function(data) {
-                console.log(data);
+
                 $("#addModal").modal('hide');
                 t.draw();
             }
@@ -100,10 +98,11 @@ $(document).ready(function() {
 
         var form = document.getElementById('form-edit')
         var formData = new FormData(form);
-        formData.append('id', $("#edited").val());
+        //formData.append('id', $("#edited").val());
         //url = $(this).attr("action");
+
         $.ajax({
-            url: '/order/edit',
+            url: '/product/edit',
             data: formData,
             type: 'POST',
             cache: false,
@@ -116,7 +115,7 @@ $(document).ready(function() {
                 //$("#loading-save").hide();
             },
             success: function(data) {
-                console.log(formData);
+
                 $("#editModal").modal('hide');
                 t.draw();
             }
@@ -124,16 +123,15 @@ $(document).ready(function() {
     });
 
 
-    $("#dataTableBuilder").on('click', '.btn-detail', function() {
+    $("#products_list").on('click', '.btn-detail', function() {
 
-        var respo = $.getJSON("/api/order/details/" + $(this).attr('data'), function() {
+        var respo = $.getJSON("/api/product/" + $(this).attr('data'), function() {
             $("li").remove();
             dat = respo.responseJSON;
-            for (i = 0; i < dat.length; i++) {
 
-                $("#details").append("<li class='list-group-item'>" + dat[i].brand + ' ' + dat[i].name + ' ' + dat[i].price + " $ </li>");
+            $("#details").append("<li class='list-group-item'>" + dat.description + "  </li>");
 
-            }
+
             $("#detailModal").modal()
         })
     });
