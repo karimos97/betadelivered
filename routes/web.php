@@ -12,15 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return view('orders.index');
-});
-Auth::routes();
+
 
 
     Route::group(['prefix' => '/order','middleware' => 'auth'], function () {
