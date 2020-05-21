@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12 text-right">
-        <button type="button" class="btn btn-info add-new"  data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add Order</button>
+        <button type="button" class="btn btn-info add-new"  data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add Product</button>
         <button type="button" class="btn btn-info btn-refresh"><i class="fa fa-plus"></i> Refresh</button>
     </div>
 </div>
