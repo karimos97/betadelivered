@@ -17,6 +17,9 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return view('orders.index');
+});
 Auth::routes();
 
 
