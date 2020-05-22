@@ -7,6 +7,7 @@
         <button type="button" class="btn btn-info btn-refresh"><i class="fa fa-plus"></i> Refresh</button>
     </div>
 </div>
+<div class="row">
             <table class="table" id="dataTableBuilder">
                 <thead>
                     <tr>
@@ -19,6 +20,7 @@
                      </tr>
                  </thead>
                 </table>
+            </div>
                 @include('orders.insert')
                 @include('orders.edit')
                 @include('orders.delete')
