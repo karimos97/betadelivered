@@ -14,34 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/home', function () {
-    return redirect('/order');
+Route::get(         '/home' , 'HomeController@index')->name('home');
+Route::redirect(    '/home' , '/order');
+Route::redirect(    '/'     , '/order');
+
+Route::group(['prefix' => '/order','middleware' => 'auth'], function () {
+        
+    Route::get('/'              , 'OrderController@home')->name('datatables.data');
+    Route::post('/insert'       , 'OrderController@insert');
+    Route::delete('/delete'     , 'OrderController@remove');
+    Route::put('/edit'          , 'OrderController@edit');
+
 });
 
-Route::get('/', function () {
-    return redirect('/order');
-});
-
-
-    Route::group(['prefix' => '/order','middleware' => 'auth'], function () {
-        Route::get('/', 'OrderController@home')->name('datatables.data');
-        ;
-        Route::post('/insert', 'OrderController@insert')
-    ;
-        Route::delete('/delete', 'OrderController@remove');
-        ;
-        Route::put('/edit', 'OrderController@edit');
-    });
 
 Route::group(['prefix' => '/product','middleware' => 'auth'], function () {
-    Route::get('/', 'ProductsController@home')->name('productstable.data');
-    ;
-    Route::post('/insert', 'ProductsController@insert')->middleware('auth')
-    ;
-    Route::delete('/delete', 'ProductsController@remove')->name('delete');
-    ;
-    Route::put('/edit', 'ProductsController@edit');
-});
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/'                  , 'ProductsController@home')->name('productstable.data');
+    Route::post('/insert'           , 'ProductsController@insert')->middleware('auth');
+    Route::delete('/delete'         , 'ProductsController@remove')->name('delete');
+    Route::put('/edit'              , 'ProductsController@edit');
+
+});
+
